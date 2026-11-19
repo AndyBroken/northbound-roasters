@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact &amp; Wholesale — Northbound Coffee Roasters</title>
+<meta name="description" content="Visit our Portland café, order by phone, or start a wholesale partnership.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2323453a'/><path d='M5 25 13 12l4 6 3-4 7 11z' fill='%23f7f4ee'/></svg>">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="contact">
+<div id="header"></div>
+
+<main>
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> / Contact</div>
+    <span class="eyebrow">Get in Touch</span>
+    <h1>Let’s talk coffee</h1>
+    <p>Questions about an order, a wholesale account or just which beans to try? We reply within one business day.</p>
+  </div>
+</section>
+
+<section style="padding-top:0" id="wholesale">
+  <div class="container contact-grid">
+    <div>
+      <div class="loc reveal"><h3>Café &amp; Roastery</h3><p>2210 SE Division St, Portland, OR 97202<br>Mon–Fri 7am–5pm · Sat–Sun 8am–4pm</p></div>
+      <div class="loc reveal"><h3>Phone &amp; Email</h3><p><a href="tel:+15035550199">(503) 555-0199</a><br><a href="mailto:hello@northbound.example">hello@northbound.example</a></p></div>
+      <div class="loc reveal"><h3>Wholesale</h3><p>Leah Cohen, Wholesale Lead<br><a href="mailto:wholesale@northbound.example">wholesale@northbound.example</a></p></div>
+      <iframe class="reveal" title="Map" loading="lazy" src="https://www.google.com/maps?q=SE+Division+St,+Portland,+OR+97202&z=14&output=embed" style="width:100%;height:260px;border:0;border-radius:12px"></iframe>
+    </div>
+
+    <div class="form-card reveal" id="formCard">
+      <div class="form-body">
+        <div class="seg" id="seg"><button class="active" data-t="general">General Question</button><button data-t="wholesale">Wholesale</button></div>
+        <form id="contactForm" novalidate>
+          <div class="form-grid">
+            <div><label for="fn">First name</label><input id="fn" required placeholder="Jane"></div>
+            <div><label for="ln">Last name</label><input id="ln" required placeholder="Doe"></div>
+            <div class="full"><label for="em">Email</label><input id="em" type="email" required placeholder="jane@company.com"></div>
+            <div class="full ws" hidden><label for="biz">Business name</label><input id="biz" placeholder="Foxglove Café"></div>
+            <div class="ws" hidden><label for="type">Business type</label><select id="type"><option>Café / Coffee shop</option><option>Restaurant</option><option>Office</option><option>Grocery / Retail</option></select></div>
+            <div class="ws" hidden><label for="vol">Weekly volume</label><select id="vol"><option>Under 10 lbs</option><option>10 – 30 lbs</option><option>30 – 80 lbs</option><option>80+ lbs</option></select></div>
+            <div class="full"><label for="msg">Message</label><textarea id="msg" rows="5" required placeholder="How can we help?"></textarea></div>
+            <div class="full"><button class="btn btn-primary" style="width:100%">Send Message</button></div>
+          </div>
+        </form>
+      </div>
+      <div class="success"><h3>Message sent!</h3><p style="color:var(--muted)">Thanks for reaching out — we’ll get back to you within one business day.</p><button class="btn btn-outline" style="margin-top:1.5rem" onclick="document.getElementById('formCard').classList.remove('sent')">Send another</button></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal"><div><span class="eyebrow">FAQ</span><h2>Common questions</h2></div></div>
+    <div class="faq reveal">
+      <details open><summary>How fresh is your coffee when it ships?</summary><p>We roast Monday through Friday and ship within 48 hours of roasting. Most orders arrive within 2–4 days anywhere in the continental U.S.</p></details>
+      <details><summary>Do you offer whole bean and ground?</summary><p>Yes — every coffee is available whole bean or ground for drip, espresso, pour-over or French press. Just mention it with your order.</p></details>
+      <details><summary>What are your wholesale minimums?</summary><p>Our wholesale program starts at 10 lbs per week. Partners get tiered pricing, free equipment consultation and on-site barista training in the Portland area.</p></details>
+      <details><summary>Is your packaging recyclable?</summary><p>Our bags are certified home-compostable, including the valve. Shipping boxes are 100% recycled cardboard.</p></details>
+      <details><summary>Can I visit the roastery?</summary><p>Absolutely. We host free public cuppings every Saturday at 10am at our Division Street café — no reservation needed.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="footer"></div>
+<script src="assets/data.js"></script>
+<script src="assets/main.js"></script>
+<script>
+const seg = document.getElementById('seg');
+function setType(t) {
+  seg.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.t === t));
+  document.querySelectorAll('.ws').forEach(el => el.hidden = t !== 'wholesale');
+  document.getElementById('biz').required = t === 'wholesale';
+}
+seg.querySelectorAll('button').forEach(b => b.addEventListener('click', () => setType(b.dataset.t)));
+if (location.hash === '#wholesale') setType('wholesale');
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', e => { e.preventDefault(); if (validate(form)) { form.reset(); document.getElementById('formCard').classList.add('sent'); } });
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Coffee — Northbound Coffee Roasters</title>
+<meta name="description" content="Single origins and house blends, roasted to order in Portland, Oregon.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2323453a'/><path d='M5 25 13 12l4 6 3-4 7 11z' fill='%23f7f4ee'/></svg>">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="coffee">
+<div id="header"></div>
+
+<main>
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> / Our Coffee</div>
+    <span class="eyebrow">Roasted Weekly</span>
+    <h1>Our Coffee</h1>
+    <p>Every coffee is roasted to order and shipped within 48 hours. Not sure where to start? Our Summit Blend is a crowd-pleaser.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="container">
+    <div class="filters" id="filters">
+      <button class="chip active" data-f="All">All</button>
+      <button class="chip" data-f="Light">Light Roast</button>
+      <button class="chip" data-f="Medium">Medium Roast</button>
+      <button class="chip" data-f="Dark">Dark Roast</button>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="grid-3" id="grid"></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow">Not sure what to pick?</span>
+      <h2 style="color:#fff">Find your roast in 30 seconds</h2>
+      <p style="color:#c8d6cc">Light roasts are bright and fruity. Medium roasts are sweet and balanced. Dark roasts are bold and chocolatey. Tell us how you brew and we’ll recommend a bag.</p>
+      <a href="contact.html" class="btn btn-light" style="margin-top:1rem">Ask a Roaster</a>
+    </div>
+    <img class="reveal" src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1000&q=80" alt="Coffee beans and ground coffee" loading="lazy">
+  </div>
+</section>
+</main>
+
+<div id="footer"></div>
+<script src="assets/data.js"></script>
+<script src="assets/main.js"></script>
+<script>
+const grid = document.getElementById('grid'), count = document.getElementById('count');
+function render(f) {
+  const list = f === 'All' ? COFFEES : COFFEES.filter(c => c.roast === f);
+  grid.innerHTML = list.map(coffeeCard).join('');
+  count.textContent = `${list.length} coffee${list.length === 1 ? '' : 's'}`;
+  observeReveals();
+}
+document.querySelectorAll('#filters .chip').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#filters .chip').forEach(x => x.classList.toggle('active', x === b));
+  render(b.dataset.f);
+}));
+render('All');
+</script>
+</body>
+</html>

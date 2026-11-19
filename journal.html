@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal &amp; Brew Guides — Northbound Coffee Roasters</title>
+<meta name="description" content="Brew guides, origin stories and coffee tips from the Northbound roasting team.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2323453a'/><path d='M5 25 13 12l4 6 3-4 7 11z' fill='%23f7f4ee'/></svg>">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-page="journal">
+<div id="header"></div>
+
+<main>
+<section class="page-hero">
+  <div class="container">
+    <div class="crumbs"><a href="index.html">Home</a> / Journal</div>
+    <span class="eyebrow">The Journal</span>
+    <h1>Brew guides &amp; stories</h1>
+    <p>Practical tips from our roasters and baristas, plus dispatches from the farms we work with.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="container">
+    <a class="featured-post reveal" id="featured" href="#"></a>
+    <div class="filters" id="filters"></div>
+    <div class="grid-3" id="grid"></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="container">
+    <div class="newsletter reveal">
+      <div><span class="eyebrow">Newsletter</span><h2>New guides, once a month</h2><p>Join 18,000 home brewers. Get 10% off your first bag when you subscribe.</p></div>
+      <form data-newsletter novalidate>
+        <div class="inline-form"><input type="email" required placeholder="you@email.com" aria-label="Email address"><button class="btn btn-primary">Subscribe</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="footer"></div>
+<script src="assets/data.js"></script>
+<script src="assets/main.js"></script>
+<script>
+const [first, ...rest] = POSTS;
+const feat = document.getElementById('featured');
+feat.href = '#' + first.slug;
+feat.innerHTML = `<div class="img"><img src="${IMG(first.img, 1200)}" alt=""></div>
+  <div><span class="eyebrow">Featured · ${first.cat}</span><h2>${first.title}</h2><p>${first.excerpt}</p>
+  <p style="margin-top:1rem;font-size:.9rem">${first.date} · ${first.read} read</p><span class="link-arrow" style="margin-top:1.2rem">Read the guide →</span></div>`;
+const cats = ['All', ...new Set(rest.map(p => p.cat))];
+const filters = document.getElementById('filters'), grid = document.getElementById('grid');
+filters.innerHTML = cats.map((c, i) => `<button class="chip ${i ? '' : 'active'}" data-f="${c}">${c}</button>`).join('');
+function render(f) { grid.innerHTML = (f === 'All' ? rest : rest.filter(p => p.cat === f)).map(postCard).join(''); observeReveals(); }
+filters.querySelectorAll('.chip').forEach(b => b.addEventListener('click', () => {
+  filters.querySelectorAll('.chip').forEach(x => x.classList.toggle('active', x === b)); render(b.dataset.f);
+}));
+render('All');
+document.addEventListener('click', e => { const a = e.target.closest('a[href^="#"]'); if (a && a.closest('main')) { e.preventDefault(); toast('Full articles are part of the CMS setup — demo only.'); } });
+</script>
+</body>
+</html>
