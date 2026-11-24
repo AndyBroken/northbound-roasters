@@ -9,3 +9,7 @@ Multi-page business website for a specialty coffee roastery in Portland, OR.
 **Tech:** HTML5, CSS3, vanilla JavaScript. Photos: Unsplash.
 
 *Concept / demo project — Northbound is a fictional brand.*
+
+## License
+
+© 2026 Andrey ([AndyBroken](https://github.com/AndyBroken)). All rights reserved. This is a portfolio demo: you may view it, but not copy or reuse the code or design. See [LICENSE](LICENSE).

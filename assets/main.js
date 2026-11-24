@@ -1,3 +1,4 @@
+/*! © 2026 Andrey (github.com/AndyBroken). All rights reserved. Concept / demo project, see LICENSE. */
 // Shared header / footer so every page stays in sync
 const LOGO = `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 26 12 11l5 8 3-5 9 12z" stroke-linejoin="round"/><circle cx="23" cy="7" r="2.5"/></svg>`;
 const page = document.body.dataset.page;
@@ -32,7 +33,7 @@ document.getElementById('footer').outerHTML = `
       <div><h5>Business</h5><ul><li><a href="contact.html#wholesale">Wholesale</a></li><li><a href="contact.html">Office Coffee</a></li><li><a href="contact.html">Careers</a></li></ul></div>
       <div><h5>Visit</h5><ul><li>2210 SE Division St<br>Portland, OR 97202</li><li><a href="tel:+15035550199">(503) 555-0199</a></li><li><a href="mailto:hello@northbound.example">hello@northbound.example</a></li></ul></div>
     </div>
-    <div class="foot-bottom"><span>© ${new Date().getFullYear()} Northbound Coffee Roasters</span><span>Concept website · Demo project</span></div>
+    <div class="foot-bottom"><span>© ${new Date().getFullYear()} Northbound Coffee Roasters</span><span>Concept website · Demo project · Design &amp; code © 2026 Andrey (AndyBroken)</span></div>
   </div>
 </footer>
 <div class="toast" id="toast"></div>`;
